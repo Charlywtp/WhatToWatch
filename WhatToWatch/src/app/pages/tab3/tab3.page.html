@@ -1,9 +1,17 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Three
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Tab Three
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+    <ion-card *ngFor="let movie of movieList">
+        <ion-card-header>
+            {{movie.title}}
+        </ion-card-header>
+        <ion-card-content>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

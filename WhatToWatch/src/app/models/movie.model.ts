@@ -2,9 +2,9 @@ export class movie {
 
     title: string;
     id: number;
-    rank: number;
+    rating: number;
     description: string;
     releaseDate: string;
-    img: string;
-    
+    img: any;
+
 }
