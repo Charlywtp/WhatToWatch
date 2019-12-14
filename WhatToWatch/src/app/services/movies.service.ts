@@ -23,4 +23,10 @@ export class MoviesService {
     let url =  ` ${this.urlMovieDb}${this.populars}&api_key=${this.apiKey}&language=es ` ;
     return this.http.get(url);
   }
+
+  searchData(title: string){
+    let url =  ` ${this.urlMovieDb}/search/movie?api_key=${this.apiKey}&query=${title}&sortb_by=popularity&language=es ` ;
+    return this.http.get(url);
+
+  }
 }

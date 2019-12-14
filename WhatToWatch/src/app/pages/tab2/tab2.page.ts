@@ -8,7 +8,7 @@ import { movie } from '../../models/movie.model';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  movieList: any[];
+  movieList: any;
   aux: any[];
 constructor(private movieService: MoviesService) {
 
@@ -16,5 +16,19 @@ constructor(private movieService: MoviesService) {
   this.movieList = data.results;
   console.log(this.movieList);
   });
+
+  }
+
+  searchChanged(search) {
+    if ( search === '') {
+      this.movieService.searchPopular().subscribe( (data: any) => {
+      this.movieList = data.results;
+      });
+    } else {
+    this.movieService.searchData(search).subscribe((data: any) => {
+      this.movieList = data.results;
+      console.log(this.movieList);
+    });
+  }
   }
 }

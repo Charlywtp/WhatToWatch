@@ -10,5 +10,8 @@ import { movie } from '../../models/movie.model';
 export class Tab3Page {
     movieList: movie[];
     aux: any[];
-  constructor() {}
+  constructor(private movieService: MoviesService) {
+
+    this.movieService.searchData("harry potter").subscribe( (data: any)  => { console.log(data.results) } );
+  }
 }

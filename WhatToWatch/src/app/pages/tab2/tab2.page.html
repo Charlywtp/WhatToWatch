@@ -1,18 +1,13 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>
-            Tab Two
-        </ion-title>
-    </ion-toolbar>
+<ion-header no-border>
+    <ion-searchbar aria-placeholder="Buscar película" (ionChange)="searchChanged($event.target.value)"></ion-searchbar>
 </ion-header>
-
-<ion-content>
+<ion-content no-margin>
     <ion-card *ngFor="let movie of movieList">
         <ion-card-header>
             {{movie.title}}
         </ion-card-header>
         <ion-card-content>
-            {{movie.poster_path | movieImgPipe}}>
+            <ion-img [src]="movie.poster_path | movieImgPipe"></ion-img>
         </ion-card-content>
     </ion-card>
 </ion-content>
