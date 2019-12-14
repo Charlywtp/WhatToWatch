@@ -10,11 +10,5 @@ import { movie } from '../../models/movie.model';
 export class Tab3Page {
     movieList: movie[];
     aux: any[];
-  constructor(private movieService: MoviesService) {
-
-    this.movieService.searchPopular().subscribe( (data: any) => {
-    this.movieList = data.results;
-    console.log(this.movieList);
-  });
-  }
+  constructor() {}
 }

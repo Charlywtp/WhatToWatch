@@ -1,5 +1,7 @@
 {
   "name": "WhatToWatch",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

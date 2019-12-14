@@ -11,8 +11,6 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class MoviesService {
 
-  private imgLink: string= "https://image.tmdb.org/t/p/w500";
-
   private apiKey: string = 'da958a49c54acd8b405ece0181cf2d8e';
 
   private urlMovieDb: string = "http://api.themoviedb.org/3";
