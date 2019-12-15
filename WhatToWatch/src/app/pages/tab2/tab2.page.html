@@ -2,9 +2,94 @@
     <ion-searchbar placeholder="Buscar una pelicula " (ionChange)="searchChanged($event.target.value)"></ion-searchbar>
 </ion-header>
 <ion-content>
+
+    <h1 class="categoryText">En cartelera</h1>
     <div class="scrolling-wrapper">
-        <h1 style="position: fixed; align-items: center; font-size: medium; top: 40px; padding-left: 4px;">Populares</h1>
+        <ion-card class="card" *ngFor="let movie of listingsList" [routerLink]="['/movieDetails/', movie.id]">
+            <ion-card-header color="light">
+                {{movie.title}}
+            </ion-card-header>
+            <ion-card-content>
+                <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+    <h1 class="categoryText">Lo que se está viendo</h1>
+    <div class="scrolling-wrapper">
         <ion-card class="card" *ngFor="let movie of movieList" [routerLink]="['/movieDetails/', movie.id]">
+            <ion-card-header color="light">
+                {{movie.title}}
+            </ion-card-header>
+            <ion-card-content>
+                <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+    <h1 class="categoryText">Para reir</h1>
+    <div class="scrolling-wrapper">
+        <ion-card class="card" *ngFor="let movie of popularComedy" [routerLink]="['/movieDetails/', movie.id]">
+            <ion-card-header color="light">
+                {{movie.title}}
+            </ion-card-header>
+            <ion-card-content>
+                <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+    <h1 class="categoryText">Para los peques de la casa</h1>
+    <div class="scrolling-wrapper">
+        <ion-card class="card" *ngFor="let movie of popularAnimation" [routerLink]="['/movieDetails/', movie.id]">
+            <ion-card-header color="light">
+                {{movie.title}}
+            </ion-card-header>
+            <ion-card-content>
+                <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+    <h1 class="categoryText">Una de pesadillas</h1>
+    <div class="scrolling-wrapper">
+        <ion-card class="card" *ngFor="let movie of popularHorror" [routerLink]="['/movieDetails/', movie.id]">
+            <ion-card-header color="light">
+                {{movie.title}}
+            </ion-card-header>
+            <ion-card-content>
+                <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+    <h1 class="categoryText">Películas románticas</h1>
+    <div class="scrolling-wrapper">
+        <ion-card class="card" *ngFor="let movie of popularRomance" [routerLink]="['/movieDetails/', movie.id]">
+            <ion-card-header color="light">
+                {{movie.title}}
+            </ion-card-header>
+            <ion-card-content>
+                <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+    <h1 class="categoryText">Para los amantes de la música</h1>
+    <div class="scrolling-wrapper">
+        <ion-card class="card" *ngFor="let movie of popularMusic" [routerLink]="['/movieDetails/', movie.id]">
+            <ion-card-header color="light">
+                {{movie.title}}
+            </ion-card-header>
+            <ion-card-content>
+                <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+    <h1 class="categoryText">Ciencia ficción</h1>
+    <div class="scrolling-wrapper">
+        <ion-card class="card" *ngFor="let movie of popularFiction" [routerLink]="['/movieDetails/', movie.id]">
             <ion-card-header color="light">
                 {{movie.title}}
             </ion-card-header>
