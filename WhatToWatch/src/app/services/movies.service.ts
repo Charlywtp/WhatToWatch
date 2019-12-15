@@ -49,6 +49,11 @@ export class MoviesService {
 
   }
 
+  getMovieVideo(id){
+    let url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${this.apiKey}&language=es`;
+    return this.http.get(url);
+  }
+
   getById(id: number) {
     let url =  ` ${this.urlMovieDb}/movie/${id}?api_key=${this.apiKey}&language=es` ;
     return this.http.get(url);

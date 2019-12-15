@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MoviesService } from '../../services/movies.service';
 import { ThrowStmt } from '@angular/compiler';
+import {YoutubeVideoPlayer} from '@ionic-native/youtube-video-player/ngx';
+import { VideoPlayer } from '@ionic-native/video-player/ngx';
+
 
 @Component({
   selector: 'app-movieDetails',
@@ -23,11 +26,11 @@ export class MovieDetailsPage {
   similars: any;
   adult: boolean;
   liked: boolean;
-
-
-  constructor(private activatedRoute: ActivatedRoute, private moviesService: MoviesService) {
+  video: any;
+  constructor(private activatedRoute: ActivatedRoute, private moviesService: MoviesService, private videoPlayer: VideoPlayer) {
     this.liked = false;
     activatedRoute.params.subscribe( data => {
+      this.video = 'https://www.youtube.com/watch?v=';
       this.id = data['id'];
       moviesService.getById(this.id).subscribe((data: any) => {
         this.title = data.title;
@@ -41,9 +44,17 @@ export class MovieDetailsPage {
         this.adult = data.adult;
         console.log(this.adult);
     });
+
+      moviesService.getMovieVideo(this.id).subscribe(( data: any) => {
+        let link = data.results[0].key;
+        this.video = this.video.concat(link);
+        console.log(this.video);
+        } );
+
       moviesService.searchSimilars(this.id).subscribe( (data: any) => {
         this.similars = data.results;
         });
+
       this.liked = moviesService.getLikeStatus(this.id);
   });
 }
@@ -51,4 +62,8 @@ export class MovieDetailsPage {
     if (!this.liked) { this.liked = true; }
     else { this.liked = false; }
     }
+
+   watch(){
+      this.videoPlayer.play(this.video);
+   }
   }
