@@ -1,4 +1,8 @@
-.welcome-card img {
-  max-height: 35vh;
-  overflow: hidden;
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    .card {
+        display: inline-block;
+    }
 }
