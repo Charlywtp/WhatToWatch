@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MoviesService } from '../../services/movies.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-movieDetails',
@@ -21,10 +22,11 @@ export class MovieDetailsPage {
   genres: any[];
   similars: any;
   adult: boolean;
+  liked: boolean;
 
 
   constructor(private activatedRoute: ActivatedRoute, private moviesService: MoviesService) {
-
+    this.liked = false;
     activatedRoute.params.subscribe( data => {
       this.id = data['id'];
       moviesService.getById(this.id).subscribe((data: any) => {
@@ -42,6 +44,11 @@ export class MovieDetailsPage {
       moviesService.searchSimilars(this.id).subscribe( (data: any) => {
         this.similars = data.results;
         });
+      this.liked = moviesService.getLikeStatus(this.id);
   });
 }
-}
+  likeMovie() {
+    if (!this.liked) { this.liked = true; }
+    else { this.liked = false; }
+    }
+  }

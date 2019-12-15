@@ -8,10 +8,9 @@ import { movie } from '../../models/movie.model';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-    movieList: movie[];
+    likedMovies: any[];
     aux: any[];
   constructor(private movieService: MoviesService) {
-
-    this.movieService.searchData("harry potter").subscribe( (data: any)  => { console.log(data.results) } );
+  // this.likedMovies = this.movieService.getLikedMovies();
   }
 }

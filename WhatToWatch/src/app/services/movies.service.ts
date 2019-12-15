@@ -23,6 +23,8 @@ export class MoviesService {
 
   constructor(private http: HttpClient) { }
 
+  likedMovies: any[] = [];
+
   searchPopular() {
     let url =  ` ${this.urlMovieDb}${this.populars}&api_key=${this.apiKey}&language=es` ;
     return this.http.get(url);
@@ -50,5 +52,25 @@ export class MoviesService {
   getById(id: number) {
     let url =  ` ${this.urlMovieDb}/movie/${id}?api_key=${this.apiKey}&language=es` ;
     return this.http.get(url);
+  }
+
+
+  likeMovie(id){
+    this.likedMovies.push(id);
+  }
+  getLikedMovies(){
+    return this.likedMovies;
+  }
+
+  dislikeMovie(id){
+       for ( let i = 0; i < this.likedMovies.length ; i = i + i) {
+          if ( this.likedMovies[i].id === id ) {this.likedMovies.splice( i, i); return; }
+       }
+  }
+  getLikeStatus(id) {
+    for ( let i = 0; i < this.likedMovies.length ; i = i + i) {
+      if ( this.likedMovies[i].id === id ) { return true; }
+   }
+    return false;
   }
 }
