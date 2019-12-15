@@ -12,3 +12,31 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.searchBar {
+    align-self: center;
+    background: #222428;
+}
+
+.searchCard {
+    max-width: 200px;
+}
+
+.categoryText {
+    font-size: large;
+    text-align: center;
+}
+
+.cardListingsImage {
+    height: 80%;
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cardTitle {
+    font-size: medium;
+    color: white;
+    text-align: center;
+}

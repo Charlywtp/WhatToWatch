@@ -1,44 +1,44 @@
 <ion-header no-border color="dark">
-    <ion-toolbar>
-        <img class="center" style="max-height: 60px;" src="/assets/img/logo_black.png">
+    <ion-toolbar color="dark">
+        <img class="left" style="max-height: 50px;" src="/assets/img/logo3_white.png">
     </ion-toolbar>
 
 </ion-header>
 
-<ion-content color="right">
+<ion-content color="dark">
 
-    <h1 class="categoryText">En cartelera</h1>
+    <h1 class="categoryText">Ahora en los cines</h1>
     <div class="scrolling-wrapper">
         <ion-card class="card" *ngFor="let movie of listingsList" [routerLink]="['/movieDetails/', movie.id]">
-            <ion-card-header color="light">
+            <ion-card-title class="cardTitle">
                 {{movie.title}}
-            </ion-card-header>
+            </ion-card-title>
             <ion-card-content>
-                <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+                <ion-img class="cardListingsImage" [src]="movie.poster_path | movieImgPipe"></ion-img>
             </ion-card-content>
         </ion-card>
     </div>
 
-    <h1 class="categoryText">Lo que se está viendo</h1>
+    <h1 class="categoryText">Destacadas recientemente</h1>
     <div class="scrolling-wrapper">
-        <ion-card class="card" *ngFor="let movie of movieList" [routerLink]="['/movieDetails/', movie.id]">
-            <ion-card-header color="light">
+        <ion-card style="border-radius: 10px;" class="card" *ngFor="let movie of movieList" [routerLink]="['/movieDetails/', movie.id]">
+            <ion-card-title class="cardTitle">
                 {{movie.title}}
-            </ion-card-header>
+            </ion-card-title>
             <ion-card-content>
-                <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+                <ion-img class="cardImage" [src]="movie.poster_path | movieImgPipe"></ion-img>
             </ion-card-content>
         </ion-card>
     </div>
 
     <h1 class="categoryText">Para reir</h1>
     <div class="scrolling-wrapper">
-        <ion-card class="card" *ngFor="let movie of popularComedy" [routerLink]="['/movieDetails/', movie.id]">
-            <ion-card-header color="light">
+        <ion-card class="card" style="margin-right: 2px;" *ngFor="let movie of popularComedy" [routerLink]="['/movieDetails/', movie.id]">
+            <ion-card-header color="dark">
                 {{movie.title}}
             </ion-card-header>
             <ion-card-content>
-                <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+                <ion-img class="cardImage" [src]="movie.poster_path | movieImgPipe"></ion-img>
             </ion-card-content>
         </ion-card>
     </div>
@@ -46,11 +46,11 @@
     <h1 class="categoryText">Para los peques de la casa</h1>
     <div class="scrolling-wrapper">
         <ion-card class="card" *ngFor="let movie of popularAnimation" [routerLink]="['/movieDetails/', movie.id]">
-            <ion-card-header color="light">
+            <ion-card-header color="dark">
                 {{movie.title}}
             </ion-card-header>
             <ion-card-content>
-                <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+                <ion-img class="cardImage" [src]="movie.poster_path | movieImgPipe"></ion-img>
             </ion-card-content>
         </ion-card>
     </div>
@@ -58,11 +58,11 @@
     <h1 class="categoryText">Una de pesadillas</h1>
     <div class="scrolling-wrapper">
         <ion-card class="card" *ngFor="let movie of popularHorror" [routerLink]="['/movieDetails/', movie.id]">
-            <ion-card-header color="light">
+            <ion-card-header color="dark">
                 {{movie.title}}
             </ion-card-header>
             <ion-card-content>
-                <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+                <ion-img class="cardImage" [src]="movie.poster_path | movieImgPipe"></ion-img>
             </ion-card-content>
         </ion-card>
     </div>
@@ -70,11 +70,11 @@
     <h1 class="categoryText">Películas románticas</h1>
     <div class="scrolling-wrapper">
         <ion-card class="card" *ngFor="let movie of popularRomance" [routerLink]="['/movieDetails/', movie.id]">
-            <ion-card-header color="light">
+            <ion-card-header color="dark">
                 {{movie.title}}
             </ion-card-header>
             <ion-card-content>
-                <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+                <ion-img class="cardImage" [src]="movie.poster_path | movieImgPipe"></ion-img>
             </ion-card-content>
         </ion-card>
     </div>
@@ -82,11 +82,11 @@
     <h1 class="categoryText">Para los amantes de la música</h1>
     <div class="scrolling-wrapper">
         <ion-card class="card" *ngFor="let movie of popularMusic" [routerLink]="['/movieDetails/', movie.id]">
-            <ion-card-header color="light">
+            <ion-card-header color="dark">
                 {{movie.title}}
             </ion-card-header>
             <ion-card-content>
-                <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+                <ion-img class="cardImage" [src]="movie.poster_path | movieImgPipe"></ion-img>
             </ion-card-content>
         </ion-card>
     </div>
@@ -94,11 +94,11 @@
     <h1 class="categoryText">Ciencia ficción</h1>
     <div class="scrolling-wrapper">
         <ion-card class="card" *ngFor="let movie of popularFiction" [routerLink]="['/movieDetails/', movie.id]">
-            <ion-card-header color="light">
+            <ion-card-header color="dark">
                 {{movie.title}}
             </ion-card-header>
             <ion-card-content>
-                <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+                <ion-img class="cardImage" [src]="movie.poster_path | movieImgPipe"></ion-img>
             </ion-card-content>
         </ion-card>
     </div>

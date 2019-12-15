@@ -5,10 +5,31 @@
     .card {
         display: inline-block;
     }
+    .cardTitle {
+        font-size: medium;
+        color: white;
+        align-self: center;
+    }
+    .cardHeader {
+        background-color: "dark";
+    }
+}
+
+.cardListingsImage {
+    height: 95%;
+    width: 95%;
+    object-fit: contain;
+}
+
+.cardImage {
+    max-height: 250px;
+    max-width: 150px;
+    object-fit: contain;
 }
 
 .categoryText {
-    text-align: left;
+    font-size: large;
+    text-align: center;
 }
 
 .center {

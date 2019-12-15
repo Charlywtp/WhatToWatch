@@ -15,10 +15,7 @@ export class Tab1Page {
 
   searchChanged(search) {
     if ( search === '') {
-      this.movieService.searchPopular().subscribe( (data: any) => {
-      this.movieList = data.results;
-      console.log(this.movieList);
-      });
+      this.movieList = [];
     } else {
     this.movieService.searchData(search).subscribe((data: any) => {
       this.movieList = data.results;

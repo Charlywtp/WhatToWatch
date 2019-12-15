@@ -17,9 +17,9 @@
             <img [src]=" this.img | movieImgPipe" style="max-height: 400px;">
         </div>
         <div>
-            <h1 class="header">{{title}} ({{releaseDate | slice:0:4}})</h1>
+            <h1 class="header" style="padding-left: 10px;">{{title}} ({{releaseDate | slice:0:4}})</h1>
         </div>
-        <div>
+        <div style="padding-left: 10px; padding-right: 10px;">
             <label style="font-size: large; margin-right: 15px;">{{rating}} ({{votecount}} votos)</label>
             <img align-items-end style="max-width: 80px; max-height: 25px;" *ngIf="adult" src="/assets/img/nokidsicon.png">
             <img align-items-end style="max-width: 80px; max-height: 25px;" *ngIf="!adult" src="/assets/img/kidsicon.png">
@@ -30,11 +30,15 @@
         </div>
     </div>
 
-    <ion-buttons>
+    <ion-buttons padding-top="5px">
         <ion-button (click)="watch()">
             <ion-icon name="play-circle"></ion-icon>
         </ion-button>
-        <label style="font-size: medium;">Ver trailer</label>
+        <label style="font-size: medium; padding-right: 100px;">Ver trailer</label>
+        <ion-button>
+            <ion-icon name="add"> </ion-icon>
+        </ion-button>
+        Añadir a lista
     </ion-buttons>
 
     <h1 class="categoryText">Películas similares </h1>
