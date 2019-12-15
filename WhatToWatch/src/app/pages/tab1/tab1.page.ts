@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MoviesService } from '../../services/movies.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -6,6 +8,21 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  list = ['1', '2', '3', '4', '5 ', '6', '7'];
-  constructor() {}
+  search: any;
+  movieList: any;
+  constructor(private movieService: MoviesService, private router: Router) {
+  }
+
+  searchChanged(search) {
+    if ( search === '') {
+      this.movieService.searchPopular().subscribe( (data: any) => {
+      this.movieList = data.results;
+      console.log(this.movieList);
+      });
+    } else {
+    this.movieService.searchData(search).subscribe((data: any) => {
+      this.movieList = data.results;
+    });
+  }
+}
 }

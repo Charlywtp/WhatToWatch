@@ -1,31 +1,13 @@
 <ion-header no-border color="dark">
-    <ion-searchbar placeholder="Buscar una pelicula "></ion-searchbar>
+    <ion-searchbar placeholder="Buscar una pelicula " (ionChange)="searchChanged($event.target.value)"></ion-searchbar>
 </ion-header>
-
 <ion-content>
-    <div class="scrolling-wrapper">
-        <ion-card class="card" *ngFor="let item of list">
-            <ion-card-header> Card</ion-card-header>
-            <ion-card-content> content</ion-card-content>
-        </ion-card>
-
-    </div>
+    <ion-card *ngFor="let movie of movieList" [routerLink]="['/movieDetails/', movie.id]">
+        <ion-card-header color="light">
+            {{movie.title}}
+        </ion-card-header>
+        <ion-card-content>
+            <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+        </ion-card-content>
+    </ion-card>
 </ion-content>
-
-
-<!--
-<ion-content>
-    <div class="scrolling-wrapper">
-
-        <ion-card *ngFor="let movie of movieList" class="card" [routerLink]="['/movieDetails/', movie.id]">
-            <ion-card-header color="light">
-                {{movie.title}}
-            </ion-card-header>
-            <ion-card-content>
-                 <ion-img [src]="movie.poster_path | movieImgPipe"></ion-img> 
-            </ion-card-content>
-        </ion-card>
-
-    </div>
-
-</ion-content> -->

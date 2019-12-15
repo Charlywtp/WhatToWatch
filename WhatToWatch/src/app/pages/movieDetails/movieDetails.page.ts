@@ -19,6 +19,8 @@ export class MovieDetailsPage {
   web: string;
   votecount: any;
   genres: any[];
+  similars: any;
+  adult: boolean;
 
 
   constructor(private activatedRoute: ActivatedRoute, private moviesService: MoviesService) {
@@ -34,8 +36,12 @@ export class MovieDetailsPage {
         this.web = data.homepage;
         this.votecount = data.vote_count;
         this.genres = data.genres;
-        console.log(this.genres);
+        this.adult = data.adult;
+        console.log(this.adult);
     });
+      moviesService.searchSimilars(this.id).subscribe( (data: any) => {
+        this.similars = data.results;
+        });
   });
 }
 }

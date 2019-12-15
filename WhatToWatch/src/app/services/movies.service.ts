@@ -41,6 +41,12 @@ export class MoviesService {
     return this.http.get(url);
   }
 
+  searchSimilars(id){
+    let url =  ` ${this.urlMovieDb}/movie/${id}/similar?api_key=${this.apiKey}&lenguage=es&page=1`;
+    return this.http.get(url);
+
+  }
+
   getById(id: number) {
     let url =  ` ${this.urlMovieDb}/movie/${id}?api_key=${this.apiKey}&language=es` ;
     return this.http.get(url);

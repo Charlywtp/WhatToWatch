@@ -15,12 +15,27 @@
         <div>
             <h1 class="header">{{title}} ({{releaseDate | slice:0:4}})</h1>
         </div>
-        <div padding-start>
-            <label style="font-size: large;">{{rating}} ({{votecount}} votos)</label> <label style="font-size: small;" padding-start *ngFor="let genre of genres"> {{genre.name}}</label>
+        <div>
+            <label style="font-size: large; margin-right: 15px;">{{rating}} ({{votecount}} votos)</label>
+            <img align-items-end style="max-width: 80px; max-height: 25px;" *ngIf="adult" src="/assets/img/nokidsicon.png">
+            <img align-items-end style="max-width: 80px; max-height: 25px;" *ngIf="!adult" src="/assets/img/kidsicon.png">
+            <label style="font-size: small;" padding-start *ngFor="let genre of genres"> {{genre.name}}</label>
         </div>
         <div padding-start padding-top>
             {{description}}
         </div>
+    </div>
+
+    <h1 class="categoryText">Películas similares</h1>
+    <div class="scrolling-wrapper">
+        <ion-card class="card" *ngFor="let movie of similars" [routerLink]="['/movieDetails/', movie.id]">
+            <ion-card-header color="light">
+                {{movie.title}}
+            </ion-card-header>
+            <ion-card-content>
+                <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
+            </ion-card-content>
+        </ion-card>
     </div>
 
 </ion-content>
