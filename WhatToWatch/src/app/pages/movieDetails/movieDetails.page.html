@@ -1,0 +1,26 @@
+<ion-header color="dark">
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-back-button color="light" text="Volver" defaultHref=""></ion-back-button>
+            <ion-button color="light" name=" "></ion-button>
+        </ion-buttons>
+        <ion-title>Detalles</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content color="dark">
+    <div class="container">
+        <div align-items-start>
+            <img [src]=" this.img | movieImgPipe" style="max-height: 400px;">
+        </div>
+        <div padding-start>
+            <h1 class="header">{{title}} ({{releaseDate | slice:0:4}})</h1>
+        </div>
+        <div padding-start>
+            <label style="font-size: large;">{{rating}} ({{votecount}} votos)</label> <label style="font-size: small;" padding-start *ngFor="let genre of genres"> {{genre.name}}</label>
+        </div>
+        <div padding-start padding-top>
+            {{description}}
+        </div>
+    </div>
+
+</ion-content>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { movie } from '../../models/movie.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
@@ -10,7 +11,7 @@ import { movie } from '../../models/movie.model';
 export class Tab2Page {
   movieList: any;
   aux: any[];
-constructor(private movieService: MoviesService) {
+constructor(private movieService: MoviesService, private router: Router) {
 
   this.movieService.searchPopular().subscribe( (data: any) => {
   this.movieList = data.results;
@@ -30,5 +31,8 @@ constructor(private movieService: MoviesService) {
       console.log(this.movieList);
     });
   }
+}
+  getDetails(id){
+      this.router.navigateByUrl(`/pages/tabs/tab2/movieDetails/${id}`);
   }
 }

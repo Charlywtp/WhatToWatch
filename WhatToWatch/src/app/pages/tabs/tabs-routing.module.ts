@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { MovieDetailsPage } from '../movieDetails/movieDetails.page';
 
 const routes: Routes = [
   {
@@ -24,7 +25,7 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../tab2/tab2.module').then(m => m.Tab2PageModule)
-          }
+          },
         ]
       },
       {
@@ -41,14 +42,19 @@ const routes: Routes = [
         path: '',
         redirectTo: '/tabs/tab2',
         pathMatch: 'full'
-      }
+      },
     ]
+  },
+  {
+    path: 'movieDetails/:id',
+    loadChildren: () =>
+    import('../movieDetails/movieDetails.module').then(m => m.MovieDetailsModule)
   },
   {
     path: '',
     redirectTo: '/tabs/tab2',
     pathMatch: 'full'
-  }
+  },
 ];
 
 @NgModule({

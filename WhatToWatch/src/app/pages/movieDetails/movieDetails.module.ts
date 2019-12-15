@@ -3,15 +3,17 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tab4Page } from './tab4.page';
+import { MovieDetailsPage } from './movieDetails.page';
+import { MovieImgPipeModule } from '../../pipes/movie-img-pie.module';
 
 @NgModule({
   imports: [
+    MovieImgPipeModule,
     IonicModule,
     CommonModule,
     FormsModule,
-    RouterModule.forChild([{ path: '', component: Tab4Page }])
+    RouterModule.forChild([{ path: '', component: MovieDetailsPage }])
   ],
-  declarations: [Tab4Page]
+  declarations: [MovieDetailsPage]
 })
-export class Tab4PageModule {}
+export class MovieDetailsModule {}

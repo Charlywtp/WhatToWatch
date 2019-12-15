@@ -13,20 +13,25 @@ export class MoviesService {
 
   private apiKey: string = 'da958a49c54acd8b405ece0181cf2d8e';
 
-  private urlMovieDb: string = "http://api.themoviedb.org/3";
+  private urlMovieDb: string = "https://api.themoviedb.org/3";
 
   private populars: string = "/discover/movie?sort_by=popularity.desc";
 
   constructor(private http: HttpClient) { }
 
   searchPopular(){
-    let url =  ` ${this.urlMovieDb}${this.populars}&api_key=${this.apiKey}&language=es ` ;
+    let url =  ` ${this.urlMovieDb}${this.populars}&api_key=${this.apiKey}&language=es` ;
     return this.http.get(url);
   }
 
   searchData(title: string){
-    let url =  ` ${this.urlMovieDb}/search/movie?api_key=${this.apiKey}&query=${title}&sortb_by=popularity&language=es ` ;
+    let url =  ` ${this.urlMovieDb}/search/movie?api_key=${this.apiKey}&query=${title}&sortb_by=popularity&language=es` ;
     return this.http.get(url);
 
+  }
+
+  getById(id: number) {
+    let url =  ` ${this.urlMovieDb}/movie/${id}?api_key=${this.apiKey}&language=es` ;
+    return this.http.get(url);
   }
 }
