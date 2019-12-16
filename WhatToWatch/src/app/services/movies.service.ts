@@ -6,6 +6,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { stringify } from 'querystring';
 import { movie } from '../models/movie.model';
 import { MovieList } from '../models/movieList.model';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Injectable({
@@ -15,86 +16,104 @@ export class MoviesService {
 
 
 
-  private apiKey: string = 'da958a49c54acd8b405ece0181cf2d8e';
+  private apiKey = 'da958a49c54acd8b405ece0181cf2d8e';
 
-  private urlMovieDb: string = 'https://api.themoviedb.org/3';
+  private urlMovieDb = 'https://api.themoviedb.org/3';
 
-  private populars: string = '/discover/movie?sort_by=popularity.desc';
+  private populars = '/discover/movie?sort_by=popularity.desc';
 
-  private listings: string = '/movie/now_playing?';
+  private listings = '/movie/now_playing?';
 
-  private popularComedy: string = '/discover/movie?api_key=';
+  private popularComedy = '/discover/movie?api_key=';
 
-  constructor(private http: HttpClient) { }
+  public listOfList: MovieList[];
+  public jumanji: movie;
+  public frozen: movie
+  public accion: MovieList;
+  public clasicos: MovieList;
+  public aux;
+
+  constructor(private http: HttpClient) {
+    this.listOfList = [];
+    this.jumanji = new movie('Jumanji: siguiente nivel','/6sjMsBcIuqU44GpG5tL33KUFOQR.jpg', 512200);
+    this.frozen = new movie('Frozen 2','/v1fpZyvp6TPboNoaWBUeoluAKfT.jpg', 330457);
+    this.clasicos = new MovieList('Clasicos');
+    this.accion = new MovieList('Acción');
+    this.clasicos.films.push(this.jumanji);
+    this.accion.films.push(this.frozen);
+    this.listOfList.push(this.clasicos);
+    this.listOfList.push(this.accion);
+
+   }
 
   likedMovies: any[] = [];
 
-  listOfList: MovieList[] = [];
+
 
   searchPopular() {
-    let url =  ` ${this.urlMovieDb}${this.populars}&api_key=${this.apiKey}&language=es` ;
+    const url =  ` ${this.urlMovieDb}${this.populars}&api_key=${this.apiKey}&language=es` ;
     return this.http.get(url);
   }
   searchListings() {
-    let url =  ` ${this.urlMovieDb}${this.listings}api_key=${this.apiKey}&language=es&page=1&region=ES` ;
+    const url =  ` ${this.urlMovieDb}${this.listings}api_key=${this.apiKey}&language=es&page=1&region=ES` ;
     return this.http.get(url);
   }
   searchData(title: string) {
-    let url =  ` ${this.urlMovieDb}/search/movie?api_key=${this.apiKey}&query=${title}&sortb_by=popularity&language=es` ;
+    const url =  ` ${this.urlMovieDb}/search/movie?api_key=${this.apiKey}&query=${title}&sortb_by=popularity&language=es` ;
     return this.http.get(url);
 
   }
-  searchPopularGenre(id){
-    let url =  ` ${this.urlMovieDb}${this.popularComedy}${this.apiKey}&lenguage=es&sortb_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${id}`;
+  searchPopularGenre(id) {
+    const url =  ` ${this.urlMovieDb}${this.popularComedy}${this.apiKey}&lenguage=es&sortb_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${id}`;
     return this.http.get(url);
   }
 
-  searchSimilars(id){
-    let url =  ` ${this.urlMovieDb}/movie/${id}/similar?api_key=${this.apiKey}&lenguage=es&page=1`;
+  searchSimilars(id) {
+    const url =  ` ${this.urlMovieDb}/movie/${id}/similar?api_key=${this.apiKey}&lenguage=es&page=1`;
     return this.http.get(url);
 
   }
 
-  getMovieVideo(id){
-    let url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${this.apiKey}&language=es`;
+  getMovieVideo(id) {
+    const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${this.apiKey}&language=es`;
     return this.http.get(url);
   }
 
   getMovieReview(id) {
-    let url = `${this.urlMovieDb}/movie/${id}/reviews?api_key=${this.apiKey}&language=en-US&page=1`;
+    const url = `${this.urlMovieDb}/movie/${id}/reviews?api_key=${this.apiKey}&language=en-US&page=1`;
     return this.http.get(url);
 
   }
 
   getMovieCast(id) {
-    let url = `${this.urlMovieDb}/movie/${id}/credits?api_key=${this.apiKey}`
+    const url = `${this.urlMovieDb}/movie/${id}/credits?api_key=${this.apiKey}`;
     return this.http.get(url);
   }
 
 
   getById(id: number) {
-    let url =  ` ${this.urlMovieDb}/movie/${id}?api_key=${this.apiKey}&language=es` ;
+    const url =  ` ${this.urlMovieDb}/movie/${id}?api_key=${this.apiKey}&language=es` ;
     return this.http.get(url);
   }
-  
+
   getActorDetails(id) {
-    let url =`${this.urlMovieDb}/person/${id}?api_key=${this.apiKey}&language=es`;
+    const url = `${this.urlMovieDb}/person/${id}?api_key=${this.apiKey}&language=es`;
     return this.http.get(url);
   }
 
   getActorMovieCredits(id) {
-    let url = `${this.urlMovieDb}/person/${id}/movie_credits?api_key=${this.apiKey}&language=es`;
+    const url = `${this.urlMovieDb}/person/${id}/movie_credits?api_key=${this.apiKey}&language=es`;
     return this.http.get(url);
   }
 
-  likeMovie(id){
+  likeMovie(id) {
     this.likedMovies.push(id);
   }
-  getLikedMovies(){
+  getLikedMovies() {
     return this.likedMovies;
   }
 
-  dislikeMovie(id){
+  dislikeMovie(id) {
        for ( let i = 0; i < this.likedMovies.length ; i = i + i) {
           if ( this.likedMovies[i].id === id ) {this.likedMovies.splice( i, i); return; }
        }
@@ -106,9 +125,9 @@ export class MoviesService {
     return false;
   }
 
-  createList(listName) {
-    listName = new MovieList(listName);
-    this.listOfList.push(listName);
+  createList(name) {
+    this.aux = new MovieList(name);
+    this.listOfList.push(this.aux);
   }
 
   getListById(listId) {
@@ -129,7 +148,7 @@ export class MoviesService {
   }
 
   addMovieToList(listName, movieName, movieId, movieImg) {
-      this.getListByName(listName).films.push(new movie(movieName, movieId, movieImg));
+      this.getListByName(listName).films.push(new movie(movieName, movieImg, movieId));
   }
 
   getLists() {return this.listOfList; }

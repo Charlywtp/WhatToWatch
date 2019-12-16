@@ -34,11 +34,21 @@
             <ion-icon name="play-circle"></ion-icon>
         </ion-button>
         <label style="font-size: medium; padding-right: 100px;">Ver trailer</label>
-        <ion-button (click)="addToList()">
+        <ion-button (click)="showList()">
             <ion-icon name="add"> </ion-icon>
         </ion-button>
         Añadir a lista
     </ion-buttons>
+
+
+    <ion-list *ngIf="showLists === true ">
+        <ion-item *ngFor="let list of lists">
+            <ion-buttons>
+                <ion-button (click)="addMovieToList(list.listName)">{{list.listName}}</ion-button>
+            </ion-buttons>
+        </ion-item>
+    </ion-list>
+
     <h1 class="categoryText">Reparto </h1>
     <div class="scrolling-wrapper">
         <ion-card class="card" *ngFor="let actor of cast" [routerLink]="['/actor-details/', actor.id]">

@@ -4,6 +4,7 @@ import { MoviesService } from '../../services/movies.service';
 import { ThrowStmt } from '@angular/compiler';
 import {YoutubeVideoPlayer} from '@ionic-native/youtube-video-player/ngx';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class MovieDetailsPage {
   movie: any[];
   description: string;
   img: any;
+  imgPoster: any;
   releaseDate: string;
   rating: string;
   web: string;
@@ -29,8 +31,14 @@ export class MovieDetailsPage {
   video: any;
   reviews: any;
   cast: any;
-  constructor(private activatedRoute: ActivatedRoute, private moviesService: MoviesService, private youtube: YoutubeVideoPlayer) {
+  lists: any;
+  showLists: any;
+
+
+  constructor(private activatedRoute: ActivatedRoute, private moviesService: MoviesService, private youtube: YoutubeVideoPlayer, private alertCtrl:AlertController) {
     this.liked = false;
+    this.showLists = false;
+    this.lists = moviesService.getLists();
     activatedRoute.params.subscribe( data => {
       this.video = 'https://www.youtube.com/watch?v=';
       this.id = data['id'];
@@ -38,6 +46,7 @@ export class MovieDetailsPage {
         this.title = data.title;
         this.description = data.overview;
         this.img = data.backdrop_path;
+        this.imgPoster = data.poster_path;
         this.releaseDate = data.release_date;
         this.rating = data.vote_average;
         this.web = data.homepage;
@@ -59,17 +68,20 @@ export class MovieDetailsPage {
         });
 
       this.liked = moviesService.getLikeStatus(this.id);
+
   });
 }
   likeMovie() {
     if (!this.liked) { this.liked = true; }
     else { this.liked = false; }
     }
-    
-    addToList() {
-      this.moviesService.addMovieToList('Hola', this.title, this.id, this.img);
-    }
    watch(){
       this.youtube.openVideo(this.video);
    }
+    showList() {this.showLists = !this.showLists ; }
+
+    addMovieToList(listName) {
+        console.log(listName);
+        this.moviesService.addMovieToList(listName, this.title, this.id, this.imgPoster);
+    }
   }

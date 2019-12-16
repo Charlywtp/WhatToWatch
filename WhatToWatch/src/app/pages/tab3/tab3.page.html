@@ -4,16 +4,18 @@
     </ion-toolbar>
 </ion-header>
 <ion-content color="dark">
-
+    <ion-title class="center">Listas personales</ion-title>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button (click)="presentAlertPrompt()" color="light">
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>
 
-    <div class="scrolling-wrapper">
-        <h1 *ngFor="let list of lists">{{list.name}}</h1>
-        <ion-card style="border-radius: 10px;" class="card" *ngFor="let film of lists" [routerLink]="['/movieDetails/', film.id]">
+    <div *ngFor="let list of lists">{{list.listName}}</div>
+
+    <div class="scrolling-wrapper" *ngFor="let list of lists">
+        <h1 class="categoryText">{{list.listName}}</h1>
+        <ion-card style="border-radius: 10px;" class="card" *ngFor="let film of list.films" [routerLink]="['/movieDetails/', film.id]">
             <ion-card-title class="cardTitle">
                 {{film.name}}
             </ion-card-title>
@@ -22,6 +24,4 @@
             </ion-card-content>
         </ion-card>
     </div>
-
-    <div *ngFor="let list of lists">Hola</div>
 </ion-content>

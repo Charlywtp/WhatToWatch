@@ -35,9 +35,9 @@ export class Tab3Page {
           }
         }, {
           text: 'Ok',
-          handler: () => {
-            this.movieService.createList(name);
-            console.log('Confirm Ok');
+          handler: (data: any) => {
+            this.movieService.createList(data.Lista);
+            console.log(data.Lista);
           }
         }
       ]
