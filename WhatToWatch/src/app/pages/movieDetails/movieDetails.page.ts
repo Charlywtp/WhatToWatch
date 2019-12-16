@@ -29,7 +29,7 @@ export class MovieDetailsPage {
   video: any;
   reviews: any;
   cast: any;
-  constructor(private activatedRoute: ActivatedRoute, private moviesService: MoviesService, private videoPlayer: VideoPlayer) {
+  constructor(private activatedRoute: ActivatedRoute, private moviesService: MoviesService, private youtube: YoutubeVideoPlayer) {
     this.liked = false;
     activatedRoute.params.subscribe( data => {
       this.video = 'https://www.youtube.com/watch?v=';
@@ -48,8 +48,7 @@ export class MovieDetailsPage {
     });
 
       moviesService.getMovieVideo(this.id).subscribe(( data: any) => {
-        let link = data.results[0].key;
-        this.video = this.video.concat(link);
+        this.video = data.results[0].key;
         console.log(this.video);
         } );
 
@@ -68,6 +67,6 @@ export class MovieDetailsPage {
     }
 
    watch(){
-      this.videoPlayer.play(this.video);
+      this.youtube.openVideo(this.video);
    }
   }
