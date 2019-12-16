@@ -1,10 +1,14 @@
+
 export class movie {
 
-    title: string;
-    id: number;
-    rating: number;
-    description: string;
-    releaseDate: string;
-    img: any;
+    name: string;
+    img: string;
+    id: any;
+
+    constructor(movieName: string, movieImg: string, movieId: any) {
+        this.name = movieName;
+        this.img = movieImg;
+        this.id = movieId;
+    }
 
 }

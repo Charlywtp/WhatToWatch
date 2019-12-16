@@ -1,18 +1,27 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>
-            Tab Three
-        </ion-title>
+<ion-header no-border color="dark">
+    <ion-toolbar color="dark">
+        <img class="left" style="max-height: 50px;" src="/assets/img/logo3_white.png">
     </ion-toolbar>
 </ion-header>
+<ion-content color="dark">
 
-<ion-content>
-    <ion-card *ngFor="let movie of likedMovies" [routerLink]="['/movieDetails/', movie.id]">
-        <ion-card-header color="light">
-            {{movie.title}}
-        </ion-card-header>
-        <ion-card-content>
-            <ion-img style="max-height: 200px; max-width: 100px;" [src]="movie.poster_path | movieImgPipe"></ion-img>
-        </ion-card-content>
-    </ion-card>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="presentAlertPrompt()" color="light">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <div class="scrolling-wrapper">
+        <h1 *ngFor="let list of lists">{{list.name}}</h1>
+        <ion-card style="border-radius: 10px;" class="card" *ngFor="let film of lists" [routerLink]="['/movieDetails/', film.id]">
+            <ion-card-title class="cardTitle">
+                {{film.name}}
+            </ion-card-title>
+            <ion-card-content>
+                <ion-img class="cardImage" [src]=" film.img | movieImgPipe"></ion-img>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+    <div *ngFor="let list of lists">Hola</div>
 </ion-content>

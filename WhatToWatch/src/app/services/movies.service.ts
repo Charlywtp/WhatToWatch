@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
-import { movie } from '../models/movie.model';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { concat } from 'rxjs';
 import { ThrowStmt } from '@angular/compiler';
+import { stringify } from 'querystring';
+import { movie } from '../models/movie.model';
+import { MovieList } from '../models/movieList.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoviesService {
+
+
 
   private apiKey: string = 'da958a49c54acd8b405ece0181cf2d8e';
 
@@ -24,6 +28,8 @@ export class MoviesService {
   constructor(private http: HttpClient) { }
 
   likedMovies: any[] = [];
+
+  listOfList: MovieList[] = [];
 
   searchPopular() {
     let url =  ` ${this.urlMovieDb}${this.populars}&api_key=${this.apiKey}&language=es` ;
@@ -99,4 +105,32 @@ export class MoviesService {
    }
     return false;
   }
+
+  createList(listName) {
+    listName = new MovieList(listName);
+    this.listOfList.push(listName);
+  }
+
+  getListById(listId) {
+    for (let i = 0; i < this.listOfList.length ; i = i + 1) {
+      if (this.listOfList[i].listId === listId) {return this.listOfList[i]; }
+     }
+  }
+  getListByName(listName) {
+    for (let i = 0; i < this.listOfList.length ; i = i + 1) {
+      if (this.listOfList[i].listName === listName) {return this.listOfList[i]; }
+     }
+  }
+
+  deleteList(listId) {
+    for (let i = 0; i < this.listOfList.length ; i = i + 1) {
+      if (this.listOfList[i].listId === listId) { this.listOfList.splice( i, i ); }
+     }
+  }
+
+  addMovieToList(listName, movieName, movieId, movieImg) {
+      this.getListByName(listName).films.push(new movie(movieName, movieId, movieImg));
+  }
+
+  getLists() {return this.listOfList; }
 }

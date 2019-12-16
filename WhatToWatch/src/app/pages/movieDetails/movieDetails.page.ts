@@ -65,7 +65,10 @@ export class MovieDetailsPage {
     if (!this.liked) { this.liked = true; }
     else { this.liked = false; }
     }
-
+    
+    addToList() {
+      this.moviesService.addMovieToList('Hola', this.title, this.id, this.img);
+    }
    watch(){
       this.youtube.openVideo(this.video);
    }

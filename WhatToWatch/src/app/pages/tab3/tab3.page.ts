@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
-import { movie } from '../../models/movie.model';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -10,7 +10,40 @@ import { movie } from '../../models/movie.model';
 export class Tab3Page {
     likedMovies: any[];
     aux: any[];
-  constructor(private movieService: MoviesService) {
+    lists: any[];
+  constructor(private movieService: MoviesService, private alertCtrl: AlertController) {
+    this.lists = this.movieService.getLists();
   // this.likedMovies = this.movieService.getLikedMovies();
   }
+  async presentAlertPrompt() {
+    const alert = await this.alertCtrl.create({
+      header: 'Nueva Lista',
+      inputs: [
+        {
+          name: 'Lista',
+          type: 'text',
+          placeholder: 'Nombre de la lista'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: () => {
+            this.movieService.createList(name);
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 }
+

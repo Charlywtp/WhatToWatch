@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MovieImgPipe } from '../../pipes/movie-img-pipe.pipe';
 import { MoviesService } from '../../services/movies.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { movie } from '../../models/movie.model';
 
 
 

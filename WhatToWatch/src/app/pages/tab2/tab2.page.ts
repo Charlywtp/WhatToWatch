@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
-import { movie } from '../../models/movie.model';
 import { Router } from '@angular/router';
 
 @Component({
