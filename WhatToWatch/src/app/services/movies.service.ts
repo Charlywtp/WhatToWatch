@@ -54,10 +54,17 @@ export class MoviesService {
     return this.http.get(url);
   }
 
+  getMovieReview(id) {
+    let url = `${this.urlMovieDb}/movie/${id}/reviews?api_key=${this.apiKey}&language=en-US&page=1`;
+    return this.http.get(url);
+
+  }
+
   getById(id: number) {
     let url =  ` ${this.urlMovieDb}/movie/${id}?api_key=${this.apiKey}&language=es` ;
     return this.http.get(url);
   }
+  
 
 
   likeMovie(id){

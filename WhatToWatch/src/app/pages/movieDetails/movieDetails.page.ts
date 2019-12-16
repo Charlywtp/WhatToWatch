@@ -27,6 +27,7 @@ export class MovieDetailsPage {
   adult: boolean;
   liked: boolean;
   video: any;
+  reviews: any;
   constructor(private activatedRoute: ActivatedRoute, private moviesService: MoviesService, private videoPlayer: VideoPlayer) {
     this.liked = false;
     activatedRoute.params.subscribe( data => {
@@ -50,6 +51,8 @@ export class MovieDetailsPage {
         this.video = this.video.concat(link);
         console.log(this.video);
         } );
+
+      moviesService.getMovieReview(this.id).subscribe((data: any) => { this.reviews = data.results; } );
 
       moviesService.searchSimilars(this.id).subscribe( (data: any) => {
         this.similars = data.results;

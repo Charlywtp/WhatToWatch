@@ -41,6 +41,18 @@
         Añadir a lista
     </ion-buttons>
 
+    <h1 class="categoryText">Opiniones de los usuarios</h1>
+    <div class="scrolling-wrapper">
+        <ion-card class="card" *ngFor="let review of reviews">
+            <ion-card-header color="dark">
+                {{review.author}}
+            </ion-card-header>
+            <ion-card-content text-wrap>
+                <ion-label color="light"> {{review.content | slice:0:400}}...see more </ion-label>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
     <h1 class="categoryText">Películas similares </h1>
     <div class="scrolling-wrapper">
         <ion-card class="card" *ngFor="let movie of similars" [routerLink]="['/movieDetails/', movie.id]">
