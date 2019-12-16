@@ -51,6 +51,11 @@ const routes: Routes = [
     import('../movieDetails/movieDetails.module').then(m => m.MovieDetailsModule)
   },
   {
+    path: 'actor-details/:id',
+    loadChildren: () =>
+    import('../actor-details/actor-details.module').then(m => m.ActorDetailsPageModule)
+  },
+  {
     path: '',
     redirectTo: '/tabs/tab2',
     pathMatch: 'full'

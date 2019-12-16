@@ -60,12 +60,26 @@ export class MoviesService {
 
   }
 
+  getMovieCast(id) {
+    let url = `${this.urlMovieDb}/movie/${id}/credits?api_key=${this.apiKey}`
+    return this.http.get(url);
+  }
+
+
   getById(id: number) {
     let url =  ` ${this.urlMovieDb}/movie/${id}?api_key=${this.apiKey}&language=es` ;
     return this.http.get(url);
   }
   
+  getActorDetails(id) {
+    let url =`${this.urlMovieDb}/person/${id}?api_key=${this.apiKey}&language=es`;
+    return this.http.get(url);
+  }
 
+  getActorMovieCredits(id) {
+    let url = `${this.urlMovieDb}/person/${id}/movie_credits?api_key=${this.apiKey}&language=es`;
+    return this.http.get(url);
+  }
 
   likeMovie(id){
     this.likedMovies.push(id);

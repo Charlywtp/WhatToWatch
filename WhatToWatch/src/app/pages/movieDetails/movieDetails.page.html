@@ -29,7 +29,6 @@
             {{description}}
         </div>
     </div>
-
     <ion-buttons padding-top="5px">
         <ion-button (click)="watch()">
             <ion-icon name="play-circle"></ion-icon>
@@ -40,6 +39,20 @@
         </ion-button>
         Añadir a lista
     </ion-buttons>
+    <h1 class="categoryText">Reparto </h1>
+    <div class="scrolling-wrapper">
+        <ion-card class="card" *ngFor="let actor of cast" [routerLink]="['/actor-details/', actor.id]">
+            <ion-card-header color="dark">
+                {{actor.name}}
+                <ion-card-subtitle class="actor-Character">
+                    {{actor.character}}
+                </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-img style="max-height: 200px; max-width: 100px;" [src]="actor.profile_path | movieImgPipe"></ion-img>
+            </ion-card-content>
+        </ion-card>
+    </div>
 
     <h1 class="categoryText">Opiniones de los usuarios</h1>
     <div class="scrolling-wrapper">

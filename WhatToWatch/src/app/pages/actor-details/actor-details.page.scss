@@ -1,3 +1,7 @@
+.header {
+    padding-left: 10px;
+}
+
 .scrolling-wrapper {
     overflow-x: scroll;
     overflow-y: hidden;
@@ -5,15 +9,6 @@
     .card {
         display: inline-block;
     }
-}
-
-.ion-content {
-    display: flex;
-}
-
-.categoryText {
-    font-size: medium;
-    text-align: center;
 }
 
 .actor-Character {

@@ -1,0 +1,42 @@
+<ion-header color="dark">
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-back-button color="light" text="Volver" defaultHref=""></ion-back-button>
+        </ion-buttons>
+        <ion-title>Detalles</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content color="dark">
+    <div class="container">
+        <div align-items-start>
+            <img [src]=" img | movieImgPipe ">
+        </div>
+        <div>
+            <h1 class="header">{{name}}</h1>
+            <h1 class="header"> {{birthdate}} | {{birthplace}}</h1>
+        </div>
+        <div style="padding-left: 10px; padding-right: 10px;">
+            <label style="font-size: large; margin-right: 15px;"> Popularidad: {{popularity}} </label>
+        </div>
+        <div>
+            {{biography}}
+        </div>
+    </div>
+
+    <h1 class="categoryText">Películas </h1>
+    <div class="scrolling-wrapper">
+        <ion-card class="card" *ngFor="let character of movieCredits">
+            <ion-card-header color="dark">
+                {{character.character}}
+                <ion-card-subtitle class="actor-Character">
+                    {{character.title}}
+                </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-img style="max-height: 200px; max-width: 100px;" [src]="character.poster_path| movieImgPipe"></ion-img>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+
+</ion-content>
